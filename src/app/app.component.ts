@@ -6,5 +6,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'zettacamp-learning-angular-http';
+  links = [
+    { path: 'posts', text: 'All Posts' },
+    { path: 'posts/new', text: 'New Post' }
+  ]
 }

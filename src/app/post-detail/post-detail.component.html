@@ -1,0 +1,44 @@
+<header>
+  <a mat-button routerLink="..">&larr; GO BACK</a>
+  <a
+    mat-button
+    *ngIf="!isOnEdit"
+    [routerLink]="[]"
+    [queryParams]="{ edit: true }"
+    >EDIT</a
+  >
+</header>
+
+<main>
+  <article *ngIf="!isOnEdit">
+    <h1>
+      {{ post?.title | titlecase }}
+    </h1>
+    <p>
+      {{ post?.body | sentencecase }}
+    </p>
+  </article>
+
+  <form *ngIf="isOnEdit" (ngSubmit)="onSubmit(title, body)">
+    <mat-form-field appearance="outline">
+      <mat-label>Post Title</mat-label>
+      <input matInput type="text" [value]="post?.title" #title />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Post Body</mat-label>
+      <textarea
+        matInput
+        type="text"
+        [value]="post?.body"
+        rows="10"
+        #body
+      ></textarea>
+    </mat-form-field>
+
+    <div>
+      <a mat-button [routerLink]="[]" [queryParams]="{ edit: null }">CANCEL</a>
+      <button mat-flat-button color="primary">UPDATE</button>
+    </div>
+  </form>
+</main>
